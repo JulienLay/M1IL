@@ -1,0 +1,48 @@
+<p>hero-list works! {{x}}</p>
+
+<p *ngIf="isDisplayed">BOO</p>
+<p *ngIf="!isDisplayed">un texte va s'afficher dans 5 secondes !</p>
+
+<p>Mes super-heros</p>
+  <table>
+    <thead>
+      <th>Id</th>
+      <th>Nom</th>
+      <th>Score</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hero of heroArray">
+        <td>{{hero.id}}</td>
+        <td>{{hero.nom}}</td>
+        <td>{{hero.score ?? 'N/A'}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <p>Somme de mes boutons : {{count}}</p>
+  <button type="button" (click)="onButtonClicked($event, 1)">+1</button>
+  <button type="button" (click)="onButtonClicked($event, -1)">-1</button>
+  <button type="button" (click)="onButtonClicked($event, 2)">+2</button>
+
+
+<p>Titre de ma page : {{title}}</p>
+<input type="text" [(ngModel)]="title" />
+
+<p>{{currentDate | date : "dd/MM/yyyy HH:mm:ss" | caractere}}</p>
+
+<form [formGroup]="profileForm" (ngSubmit)="changeValues()">
+    <label for="nom">nom : </label>
+    <input type="text" formControlName="nom" id="nom">
+    <br>
+
+    <label for="prenom">prenom: </label>
+    <input type="text" formControlName="prenom" id="prenom">
+    <br>
+
+    <label for="age">age : </label>
+    <input type="number" formControlName="age" id="age">
+    <br>
+
+    <button type="submit">Envoyer</button>
+</form>
