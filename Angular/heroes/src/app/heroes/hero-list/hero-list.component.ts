@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Hero } from './hero.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { fobiddenNameValidatior } from '../forbiddenName.directive';
+import { HeroService } from './hero.service';
 
 @Component({
   selector: 'app-hero-list',
@@ -21,14 +22,32 @@ export class HeroListComponent {
     age: [0],
   });
   data : {nom:string|null, prenom:string|null, age:number|null} = {nom: 'lay', prenom:'julien', age:22};
+  currentHero: Hero | undefined;
+  heroesList: Array<Hero> | undefined;
+
 
   ngOnInit(): void {
     setTimeout(() => this.changeDisplay(), 5000)
-    this.heroArray.push(new Hero(1, 'Batman', 100));
-    this.heroArray.push(new Hero(2, 'Superman', 200));
-    this.heroArray.push(new Hero(3, 'Pacman', 300));
+    this.heroArray.push(new Hero(4, 'Batman', 400));
+    this.heroArray.push(new Hero(5, 'Superman', 500));
+    this.heroArray.push(new Hero(6, 'Pacman', 600));
     this.profileForm.patchValue(this.data);
+
+    this.heroService.getAllHeroes().subscribe(resHeroList =>  {
+      this.heroesList = resHeroList;
+      if (this.heroesList.length > 0) {
+        this.currentHero = this.heroesList.at(0);
+      }
+    });
+
   }
+
+  rotateHeroClicked() {
+    this.heroService.rotateAllHeroes().subscribe(hero => {
+      this.currentHero = hero;
+      })
+    }
+
 
   changeDisplay() {
     this.isDisplayed = !this.isDisplayed;
@@ -46,10 +65,13 @@ export class HeroListComponent {
     this._title = val;
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private heroService: HeroService) {}
 
   changeValues() {
-    this.data = {...this.data, ...this.profileForm.value}
+    if (this.profileForm.valid) {
+      this.data = {...this.data, ...this.profileForm.value}
+    }
     console.log(this.data);
+
   }
 }
