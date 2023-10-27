@@ -21,7 +21,10 @@ namespace Initiation
         // exo_13();
         // exo_14();
         // exo_15();
-            exo_16();
+        // exo_16();
+        // exo_17();
+        // exo_18();
+            exo_19();
         }
 
         public static void exo_1()
@@ -271,5 +274,96 @@ namespace Initiation
 
             Console.WriteLine("Il a fallu {0} divisions pour atteindre un résultat inférieur ou égal à 1.", nombreDeDivisions);
         }
+
+        static void exo_17() {
+            // Créer un tableau d'entiers
+            int[] tableau = new int[9]; // 9 éléments pour contenir les chiffres de 5 à 13
+
+            // Remplir le tableau avec les chiffres entre 5 et 13
+            for (int i = 0; i < tableau.Length; i++)
+            {
+                tableau[i] = 5 + i;
+            }
+
+            // Remplacer le 3e élément du tableau par 111
+            tableau[2] = 111;
+
+            // Afficher tous les éléments du tableau
+            Console.WriteLine("Éléments du tableau :");
+            foreach (int nombre in tableau)
+            {
+                Console.WriteLine(nombre);
+            }
+        }
+
+        static void exo_18() {
+            int[] tableau = { 2, 7, 10, 4, 8, 6, 12, 5 };
+
+            Console.WriteLine("Tableau original :");
+            foreach (int nombre in tableau)
+            {
+                Console.Write(nombre + " ");
+            }
+            Console.WriteLine();
+
+           for (int i = 0; i < tableau.Length; i++)
+            {
+                if (tableau[i] % 2 == 0) // Vérifier si le nombre est pair
+                {
+                    tableau[i] = i; // Remplacer le nombre pair par son index
+                }
+            }
+
+            Console.WriteLine("\nTableau modifié :");
+            foreach (int nombre in tableau)
+            {
+                Console.Write(nombre + " ");
+            }
+            Console.WriteLine();
+        }
+
+        // static void exo_19() {
+        //     int[] tableau1 = { 1, 3, 5, 7 };
+        //     int[] tableau2 = { 2, 4, 6, 8, 10 };
+
+        //     int[] nouveauTableau = FusionnerTableaux(tableau1, tableau2);
+
+        //     Console.WriteLine("Nouveau tableau fusionné :");
+        //     AfficherTableau(nouveauTableau);
+        // }
+
+        // static int[] FusionnerTableaux(int[] tableau1, int[] tableau2)
+        // {
+        //     int longueurNouveauTableau = tableau1.Length + tableau2.Length;
+        //     int[] nouveauTableau = new int[longueurNouveauTableau];
+
+        //     int indexTableau1 = 0;
+        //     int indexTableau2 = 0;
+
+        //     for (int i = 0; i < longueurNouveauTableau; i++)
+        //     {
+        //         if (indexTableau1 < tableau1.Length)
+        //         {
+        //             nouveauTableau[i] = tableau1[indexTableau1];
+        //             indexTableau1++;
+        //         }
+        //         else if (indexTableau2 < tableau2.Length)
+        //         {
+        //             nouveauTableau[i] = tableau2[indexTableau2];
+        //             indexTableau2++;
+        //         }
+        //     }
+
+        //     return nouveauTableau;
+        // }
+
+        // static void AfficherTableau(int[] tableau)
+        // {
+        //     foreach (int nombre in tableau)
+        //     {
+        //         Console.Write(nombre + " ");
+        //     }
+        //     Console.WriteLine();
+        // }
     }
 }
